@@ -2,9 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [ refresh ]
+    branches: 
+    - refresh
   pull_request:
-    branches: [ refresh ]
+    branches:
+    - refresh
 
 jobs:
   build:
