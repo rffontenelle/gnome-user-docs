@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ refresh ]
+  pull_request:
+    branches: [ refresh ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: apt update -y
+    - run: apt install git autoconf automake make gettext itstool libxslt1.1 yelp-tools
+    - run: ./check.sh
+    - run: ./autogen.sh ITSTOOL="/usr/bin/itstool --strict"
+    - run: make
+    - run: make check
